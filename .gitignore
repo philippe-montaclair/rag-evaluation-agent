@@ -1,0 +1,61 @@
+# ── Python ──
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# ── Environnements virtuels ──
+venv/
+.venv/
+env/
+
+# ── Docs de travail (hors dépôt public) ──
+*.odt
+*.pdf
+*.pages
+*.docx
+
+# ── Notes / passation personnelles ──
+session_handoff.md
+diagnostic_*.py
+
+# ── Scripts de validation locale (Ollama/Mac, hors périmètre du package) ──
+validate_ragas_local.py
+test_stack_local_ollama.py
+test_ollama_judge.py
+test_rag_evaluation_agent.txt
+
+# ── Branche LangChain archivée (divergence tranchée le 20/07/2026) ──
+_backups_migration_20260715/
+
+# ── OS / divers ──
+.DS_Store
+*.log
+*.tmp
+.write_test
+dashboard.html
+
+# ── Données de test & validation (privées, hors dépôt public) ──
+dump_locatif_*.json
+AUDIT_RAG_locatif.xlsx
+AUDIT_RAG_locatif.numbers
+reponses_IA/
+validation_croisee_3IA/
+QUESTIONS_A_SOUMETTRE.md
+RECOUPEMENT_3IA_vs_audit.md
+
+# ── Rangement / artefacts locaux (hors dépôt) ──
+_DOUBLONS_a_supprimer/
+dashboards_grafana/
+agent_evaluation_rag-bis/
+
+# ── Déchets techniques (jamais publier) ──
+.git_sandbox_incomplete/
+.~lock.*#

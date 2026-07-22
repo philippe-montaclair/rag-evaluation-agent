@@ -1,0 +1,57 @@
+# ═══════════════════════════════════════════════════════════════
+# pyproject.toml — RAGEvaluationAgent
+# ═══════════════════════════════════════════════════════════════
+
+[project]
+name = "rag-evaluation-agent"
+version = "1.0.0"
+description = "Agent d'évaluation automatique pour pipelines RAG (RAGAS, TruLens, LLM-as-Judge, vérification humaine)"
+readme = "README.md"
+requires-python = ">=3.9,<3.13"
+license = { text = "MIT" }
+authors = [
+    { name = "Ton Nom" }
+]
+keywords = ["rag", "evaluation", "ragas", "llm-as-judge", "trulens"]
+
+dependencies = [
+    "ragas>=0.1.9,<0.2.0",
+    "datasets>=2.19.0,<3.0.0",
+    "openai>=1.30.0,<2.0.0",
+    "pandas>=2.0.0,<3.0.0",
+    "jinja2>=3.1.0,<4.0.0",
+]
+
+[project.optional-dependencies]
+trulens = ["trulens_eval>=0.31.0,<0.32.0"]
+phoenix = ["arize-phoenix>=4.0.0,<5.0.0"]
+prometheus = ["prometheus_client>=0.20.0,<1.0.0"]
+all = [
+    "trulens_eval>=0.31.0,<0.32.0",
+    "arize-phoenix>=4.0.0,<5.0.0",
+    "prometheus_client>=0.20.0,<1.0.0",
+]
+dev = [
+    "pytest>=8.0.0,<9.0.0",
+    "pytest-mock>=3.14.0,<4.0.0",
+    "pytest-cov>=5.0.0,<6.0.0",
+    "black>=24.0.0,<25.0.0",
+    "ruff>=0.5.0,<1.0.0",
+]
+
+[build-system]
+requires = ["setuptools>=68.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.pytest.ini_options]
+testpaths = ["."]
+python_files = ["test_*.py"]
+addopts = "-v --tb=short"
+
+[tool.black]
+line-length = 100
+target-version = ["py39", "py310", "py311", "py312"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"

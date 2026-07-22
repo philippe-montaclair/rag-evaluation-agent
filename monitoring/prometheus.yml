@@ -1,0 +1,10 @@
+# Prometheus scrape le Pushgateway, où RagEval pousse ses métriques.
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  - job_name: "pushgateway"
+    honor_labels: true          # conserve les labels 'job'/'instance' poussés
+    static_configs:
+      - targets: ["pushgateway:9091"]

@@ -1,0 +1,48 @@
+# Stack de dashboards : Pushgateway -> Prometheus -> Grafana.
+# Indépendante de Phoenix. Lancer depuis ce dossier :
+#     cd monitoring && docker compose -f docker-compose.grafana.yml up -d
+# UI Grafana : http://localhost:3001  (admin / admin au 1er login)
+# Prometheus : http://localhost:9090   |   Pushgateway : http://localhost:9091
+services:
+  pushgateway:
+    image: prom/pushgateway:latest
+    container_name: rageval-pushgateway
+    ports:
+      - "9091:9091"
+    mem_limit: 128m
+    restart: unless-stopped
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: rageval-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    mem_limit: 384m
+    restart: unless-stopped
+    depends_on:
+      - pushgateway
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: rageval-grafana
+    ports:
+      - "3001:3000"            # 3001 côté hôte pour éviter tout conflit (Dify utilise 3000)
+    volumes:
+      - ./grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./grafana/dashboards:/var/lib/grafana/dashboards:ro
+      - grafana_data:/var/lib/grafana
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_USERS_ALLOW_SIGN_UP=false
+      - GF_SERVER_ROOT_URL=http://localhost:3001/
+      - GF_SERVER_HTTP_PORT=3000
+    mem_limit: 384m
+    restart: unless-stopped
+    depends_on:
+      - prometheus
+
+volumes:
+  grafana_data:

@@ -1,0 +1,12 @@
+# ═══════════════════════════════════════════════════════════════
+# requirements-phoenix.txt — CLIENT d'export vers Phoenix (léger).
+# Le serveur Phoenix, lui, tourne en Docker (voir docker-compose.yml) :
+# rien de lourd à installer ici, compatible Python 3.13.
+# ═══════════════════════════════════════════════════════════════
+opentelemetry-sdk>=1.20.0
+opentelemetry-exporter-otlp-proto-grpc>=1.20.0
+# Client REST léger (py3.13 OK) : attache les scores comme MESURES (annotations).
+arize-phoenix-client>=2.0.0
+# Facultatif : constantes de conventions OpenInference (sinon on met les
+# noms d'attributs en clair, ce que fait phoenix_export.py par défaut).
+# openinference-semantic-conventions>=0.1.0

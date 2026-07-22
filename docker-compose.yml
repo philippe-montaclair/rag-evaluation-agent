@@ -1,0 +1,23 @@
+# Phoenix (Arize) — serveur d'observabilité LLM en conteneur.
+# UI : http://localhost:6006   |   Ingest OTLP gRPC : localhost:4317
+# Le serveur tourne dans Docker -> AUCUNE installation Python côté hôte
+# (contourne l'incompatibilité arize-phoenix / Python 3.13).
+services:
+  phoenix:
+    image: arizephoenix/phoenix:latest
+    container_name: phoenix
+    ports:
+      - "6006:6006"   # interface web
+      - "4317:4317"   # OpenTelemetry OTLP (gRPC)
+    volumes:
+      - phoenix_data:/mnt/data   # persistance des traces entre redémarrages
+    environment:
+      - PHOENIX_WORKING_DIR=/mnt/data
+    restart: unless-stopped
+    # ── Garde-fous mémoire (respect de la RAM du Mac) ──
+    mem_limit: 1g          # plafond dur : Phoenix ne dépassera pas 1 Go
+    mem_reservation: 256m  # réservation "douce" indicative
+    cpus: 1.0              # au plus 1 cœur
+
+volumes:
+  phoenix_data:
