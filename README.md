@@ -1,7 +1,6 @@
 # 🧪 RagEval
 
-<!-- Remplacer <user> par votre identifiant GitHub -->
-[![CI](https://github.com/<user>/rag-evaluation-agent/actions/workflows/ci.yml/badge.svg)](https://github.com/<user>/rag-evaluation-agent/actions/workflows/ci.yml)
+[![CI](https://github.com/philippe-montaclair/rag-evaluation-agent/actions/workflows/ci.yml/badge.svg)](https://github.com/philippe-montaclair/rag-evaluation-agent/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 ![Python](https://img.shields.io/badge/python-3.9%20|%203.10%20|%203.11%20|%203.12-blue)
 
